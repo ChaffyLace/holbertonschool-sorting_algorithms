@@ -1,52 +1,38 @@
 #include "sort.h"
 
 /**
- * swap_elements - Swaps the values of two integers.
- *
- * @a: Pointer to the first integer.
- * @b: Pointer to the second integer.
- * Return: Nothing.
- */
-void swap_elements(int *a, int *b)
-{
-    int tmp;
-
-    tmp = *a;
-    *a = *b;
-    *b = tmp;
-}
-
-/**
- * bubble_sort - Sorts an array of integers in ascending order.
- *
- * @array: The array of integers.
+ * bubble_sort - Sorts an array of integers in ascending order
+ * using the Bubble sort algorithm.
+ * @array: The array to be sorted.
  * @size: The size of the array.
- * Return: Nothing.
+ *
+ * Description: Prints the array after each time two elements are swapped.
  */
 void bubble_sort(int *array, size_t size)
 {
-    size_t i, j;
-    int swapped;
+	size_t i, j;
+	int temp;
+	int swapped;
 
-    if (array == NULL || size < 2)
-        return;
+	if (array == NULL || size < 2)
+		return;
 
-    for (i = 0; i < size - 1; i++)
-    {
-        swapped = 0;
-
-        for (j = 0; j < size - 1 - i; j++)
-        {
-            if (array[j] > array[j + 1])
-            {
-                swap_elements(&array[j], &array[j + 1]);
-                swapped = 1;
-
-                print_array((const int *)array, size);
-            }
-        }
-
-        if (swapped == 0)
-            break;
-    }
+	for (i = 0; i < size - 1; i++)
+	{
+		swapped = 0;
+		for (j = 0; j < size - i - 1; j++)
+		{
+			if (array[j] > array[j + 1])
+			{
+				temp = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = temp;
+				print_array(array, size);
+				swapped = 1;
+			}
+		}
+        
+		if (swapped == 0)
+			break;
+	}
 }
